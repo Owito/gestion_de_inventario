@@ -1,0 +1,24 @@
+<h1 mat-dialog-title>{{ isEditMode ? 'Editar Venta' : 'Registrar Venta' }}</h1>
+<div mat-dialog-content [formGroup]="form">
+  <mat-form-field appearance="fill" class="w-full">
+    <mat-label>Fecha de Venta</mat-label>
+    <input matInput [matDatepicker]="picker" formControlName="Fecha">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+    <mat-error *ngIf="form.get('Fecha')?.hasError('required')">La fecha es requerida.</mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="w-full">
+    <mat-label>Cliente</mat-label>
+    <mat-select formControlName="ID_Cliente">
+      <mat-option *ngFor="let cliente of clientes$ | async" [value]="cliente.ID">
+        {{ cliente.Nombre }}
+      </mat-option>
+    </mat-select>
+    <mat-error *ngIf="form.get('ID_Cliente')?.hasError('required')">El cliente es requerido.</mat-error>
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onCancel()">Cancelar</button>
+  <button mat-raised-button color="primary" (click)="onSave()" [disabled]="!form.valid">{{ isEditMode ? 'Guardar Cambios' : 'Crear' }}</button>
+</div> 

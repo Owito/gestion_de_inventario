@@ -1,0 +1,19 @@
+<h1 mat-dialog-title>{{ isEditMode ? 'Editar Proveedor' : 'Agregar Proveedor' }}</h1>
+<div mat-dialog-content [formGroup]="form">
+  <mat-form-field appearance="fill" class="w-full">
+    <mat-label>Nombre</mat-label>
+    <input matInput formControlName="Nombre">
+    <mat-error *ngIf="form.get('Nombre')?.hasError('required')">El nombre es requerido.</mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="w-full">
+    <mat-label>Contacto (Email)</mat-label>
+    <input matInput formControlName="Contacto" type="email">
+    <mat-error *ngIf="form.get('Contacto')?.hasError('required')">El contacto es requerido.</mat-error>
+    <mat-error *ngIf="form.get('Contacto')?.hasError('email')">Formato de email inválido.</mat-error>
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onCancel()">Cancelar</button>
+  <button mat-raised-button color="primary" (click)="onSave()" [disabled]="!form.valid">{{ isEditMode ? 'Guardar Cambios' : 'Crear' }}</button>
+</div> 

@@ -1,0 +1,41 @@
+<mat-sidenav-container class="sidenav-container" style="background-color: #F0F0F4;">
+  <mat-sidenav #drawer class="sidenav"
+      mode="over"
+      [opened]="false">
+    <mat-toolbar style="background: #50508A; color: white;">
+      <span>Navegación</span>
+      <span class="toolbar-spacer"></span>
+      <button mat-icon-button (click)="drawer.toggle()" aria-label="Cerrar menú">
+        <mat-icon style="color: white;">close</mat-icon>
+      </button>
+    </mat-toolbar>
+    <mat-nav-list>
+      <a mat-list-item routerLink="/proveedores" routerLinkActive="active-link" (click)="drawer.close()">Proveedores</a>
+      <a mat-list-item routerLink="/materiales" routerLinkActive="active-link" (click)="drawer.close()">Materiales</a>
+      <a mat-list-item routerLink="/escuelas" routerLinkActive="active-link" (click)="drawer.close()">Escuelas</a>
+      <a mat-list-item routerLink="/productos" routerLinkActive="active-link" (click)="drawer.close()">Productos</a>
+      <a mat-list-item routerLink="/clientes" routerLinkActive="active-link" (click)="drawer.close()">Clientes</a>
+      <a mat-list-item routerLink="/ventas" routerLinkActive="active-link" (click)="drawer.close()">Ventas</a>
+      <a mat-list-item routerLink="/despachos" routerLinkActive="active-link" (click)="drawer.close()">Despachos</a>
+      <a mat-list-item routerLink="/inventario" routerLinkActive="active-link" (click)="drawer.close()">Inventario</a>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <mat-toolbar color="primary" style="background: #50508A; gap: 10px;">
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()">
+        <mat-icon aria-label="Side nav toggle icon " style="color: white;">menu</mat-icon>
+      </button>
+      <span style="color: white;">{{ title }}</span>
+    </mat-toolbar>
+
+    <!-- Este es el ÚNICO router-outlet. Aquí se mostrará el contenido de las páginas. -->
+    <main class="main-content">
+      <router-outlet></router-outlet>
+    </main>
+  </mat-sidenav-content>
+</mat-sidenav-container>

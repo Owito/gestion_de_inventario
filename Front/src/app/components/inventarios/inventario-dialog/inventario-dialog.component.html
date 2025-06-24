@@ -1,0 +1,41 @@
+<h1 mat-dialog-title>{{ isEditMode ? 'Editar Registro de Inventario' : 'Agregar a Inventario' }}</h1>
+<div mat-dialog-content [formGroup]="form">
+  <mat-form-field appearance="fill" class="w-full">
+    <mat-label>Fecha</mat-label>
+    <input matInput [matDatepicker]="picker" formControlName="Fecha">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+    <mat-error *ngIf="form.get('Fecha')?.hasError('required')">La fecha es requerida.</mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="w-full">
+    <mat-label>Escuela</mat-label>
+    <mat-select formControlName="ID_Escuela">
+      <mat-option *ngFor="let escuela of escuelas$ | async" [value]="escuela.ID">
+        {{ escuela.Nombre }}
+      </mat-option>
+    </mat-select>
+    <mat-error *ngIf="form.get('ID_Escuela')?.hasError('required')">La escuela es requerida.</mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="w-full">
+    <mat-label>Material</mat-label>
+    <mat-select formControlName="ID_Material">
+      <mat-option *ngFor="let material of materiales$ | async" [value]="material.ID">
+        {{ material.Nombre }}
+      </mat-option>
+    </mat-select>
+    <mat-error *ngIf="form.get('ID_Material')?.hasError('required')">El material es requerido.</mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="w-full">
+    <mat-label>Cantidad</mat-label>
+    <input matInput formControlName="Cantidad" type="number" min="1">
+    <mat-error *ngIf="form.get('Cantidad')?.hasError('required')">La cantidad es requerida.</mat-error>
+    <mat-error *ngIf="form.get('Cantidad')?.hasError('min')">La cantidad debe ser al menos 1.</mat-error>
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onCancel()">Cancelar</button>
+  <button mat-raised-button color="primary" (click)="onSave()" [disabled]="!form.valid">{{ isEditMode ? 'Guardar Cambios' : 'Crear' }}</button>
+</div> 

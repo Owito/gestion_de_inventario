@@ -1,0 +1,105 @@
+/* You can add global styles to this file, and also import other style files */
+
+/* Importar una fuente limpia y moderna de Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+
+/* Paleta de colores y variables globales - TEMA GRIS */
+:root {
+  --app-primary-color: #424242; /* Gris oscuro (grey-800) */
+  --app-accent-color: #757575;  /* Gris medio (grey-600) */
+  --app-background-color: #f5f5f5;
+  --app-surface-color: #ffffff;
+  --app-text-color: #212121;
+  --app-subtle-text-color: #616161;
+  --app-border-color: #e0e0e0;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+  background-color: var(--app-background-color);
+  color: var(--app-text-color);
+}
+
+/* Estilo unificado para todas las tablas */
+.mat-elevation-z8 {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05) !important;
+  background-color: var(--app-surface-color);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.mat-table {
+  width: 100%;
+}
+
+.mat-header-cell {
+  background-color: #fafafa;
+  color: var(--app-text-color);
+  font-weight: 500;
+  font-size: 14px;
+}
+
+/* MODIFICADO: Hover de la tabla para usar el nuevo color primario */
+.mat-row:hover {
+  background-color: rgba(66, 66, 66, 0.04); /* Un toque del nuevo gris oscuro al pasar el mouse */
+}
+
+/* Estilo para los encabezados de cada página (ej: "Gestión de Proveedores") */
+.header {
+  margin-bottom: 1.5rem !important;
+}
+
+.header h1 {
+  font-size: 2rem;
+  font-weight: 500;
+  color: var(--app-primary-color);
+}
+
+table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  background-color: #a3a0c2;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: inset 4px 4px 8px #8c8aaa, inset -4px -4px 8px #bebce0;
+  color: #ffffff;
+  font-size: 14px;
+}
+
+table th,
+table td {
+  padding: 12px 16px;
+  text-align: left;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+table th {
+  background-color: #bcb8db;
+  font-weight: bold;
+}
+
+table tr:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+table button {
+  background-color: #a3a0c2;
+  border: none;
+  color: white;
+  border-radius: 10px;
+  padding: 6px;
+  margin: 0 4px;
+  box-shadow: 2px 2px 5px #8a88aa, -2px -2px 5px #c2c0e2;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+table button:hover {
+  box-shadow: inset 2px 2px 5px #8a88aa, inset -2px -2px 5px #c2c0e2;
+}

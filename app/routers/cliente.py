@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, Path
 from sqlalchemy.orm import Session
 from app.database import SessionLocal
 from app.schemas.cliente import ClienteCreate, ClienteOut
@@ -25,3 +25,16 @@ def crear_cliente(cliente: ClienteCreate, db: Session = Depends(get_db)):
 def listar_clientes(db: Session = Depends(get_db)):
     dao = ClienteDAO(db)
     return dao.listar_clientes()
+
+# Actualizar clientes usando el DAO
+@router.put("/{cliente_id}", response_model=ClienteOut)
+def actualizar_cliente(
+    cliente_id: int = Path(..., description="ID del cliente a actualizar"),
+    cliente: ClienteCreate = ...,
+    db: Session = Depends(get_db)
+):
+    dao = ClienteDAO(db)
+    cliente_actualizado = dao.actualizar_cliente(cliente_id, cliente)
+    if not cliente_actualizado:
+        raise HTTPException(status_code=404, detail="Cliente no encontrado")
+    return cliente_actualizado
