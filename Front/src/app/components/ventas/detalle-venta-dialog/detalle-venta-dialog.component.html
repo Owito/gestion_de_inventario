@@ -1,0 +1,23 @@
+<h1 mat-dialog-title>Agregar Producto a la Venta</h1>
+<div mat-dialog-content [formGroup]="form">
+  <mat-form-field appearance="fill" class="w-full">
+    <mat-label>Producto</mat-label>
+    <mat-select formControlName="ID_Producto">
+      <mat-option *ngFor="let producto of productos$ | async" [value]="producto.ID">
+        {{ producto.Nombre }}
+      </mat-option>
+    </mat-select>
+    <mat-error *ngIf="form.get('ID_Producto')?.hasError('required')">El producto es requerido.</mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="w-full">
+    <mat-label>Cantidad</mat-label>
+    <input matInput formControlName="Cantidad" type="number" min="1">
+    <mat-error *ngIf="form.get('Cantidad')?.hasError('required')">La cantidad es requerida.</mat-error>
+    <mat-error *ngIf="form.get('Cantidad')?.hasError('min')">La cantidad debe ser al menos 1.</mat-error>
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onCancel()">Cancelar</button>
+  <button mat-raised-button color="primary" (click)="onSave()" [disabled]="!form.valid">Agregar</button>
+</div> 

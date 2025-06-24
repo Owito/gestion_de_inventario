@@ -1,0 +1,90 @@
+.sidenav-container {
+  height: 100%;
+}
+
+.sidenav {
+  width: 240px;
+  background-color: var(--app-surface-color);
+  border-right: 1px solid var(--app-border-color);
+  box-shadow: 3px 0 6px rgba(0, 0, 0, 0.05); /* Sombra sutil para dar profundidad */
+}
+
+.sidenav .mat-toolbar {
+  background: transparent;
+  font-weight: 500;
+  font-size: 1.2rem;
+  color: var(--app-primary-color);
+  border-bottom: 1px solid var(--app-border-color);
+  display: flex;
+  align-items: center;
+}
+
+/* Nuevo estilo para el espaciador */
+.toolbar-spacer {
+  flex: 1 1 auto;
+}
+
+/* PUNTO 1 y 2: Hover circular para iconos y hover mejorado para items */
+.mat-toolbar .mat-icon-button {
+  border-radius: 50%; /* Hover circular para los botones de icono */
+}
+
+/* NUEVO: Añade un color de fondo al hover para hacer visible el círculo */
+.mat-toolbar .mat-icon-button:hover {
+  background-color: rgba(0, 0, 0, 0.04);
+}
+
+/* PUNTO 2 y 3: Padding y Hover para los items del sidebar */
+.mat-nav-list a.mat-list-item {
+  color: var(--app-subtle-text-color);
+  margin: 6px 12px;
+  padding: 10px 20px; /* Padding extra para los items */
+  border-radius: 8px;
+  transition: background-color 0.2s, color 0.2s, transform 0.2s;
+  font-weight: 400;
+}
+
+/* MODIFICADO: Hover para usar el nuevo color primario */
+.mat-nav-list a.mat-list-item:hover {
+  background-color: rgba(66, 66, 66, 0.1);
+  color: var(--app-primary-color);
+  transform: translateX(5px);
+}
+
+/* MODIFICADO: Sombra del enlace activo para usar el nuevo color */
+.mat-nav-list a.active-link {
+  background-color: var(--app-primary-color);
+  color: #fff;
+  font-weight: 500;
+  box-shadow: 0 2px 4px rgba(66, 66, 66, 0.3);
+}
+
+.mat-nav-list a.active-link:hover {
+  transform: translateX(0); /* Anula el hover para el elemento activo */
+}
+
+/* PUNTO 4: Header principal con efecto blur y sin sombra */
+.mat-toolbar.mat-primary {
+  position: sticky;
+  top: 0;
+  z-index: 2; /* Asegura que esté por encima del contenido */
+  box-shadow: none; /* Se remueve la sombra */
+
+  /* RE-AÑADIDO: Efecto de desenfoque de fondo (glassmorphism) */
+  background-color: rgba(255, 255, 255, 0.75); /* Fondo blanco translúcido para que el blur sea visible */
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px); /* Para compatibilidad con Safari */
+
+  /* MODIFICADO: Borde inferior visible usando nuestra variable de color global */
+  border-bottom: 1px solid var(--app-border-color);
+}
+
+.main-content {
+  padding: 24px;
+}
+
+/* MODIFICADO: Estilo del overlay a color oscuro sólido */
+::ng-deep .mat-drawer-backdrop.mat-drawer-shown {
+  background-color: rgba(0, 0, 0, 0.5);
+  /* Se eliminan los filtros de desenfoque */
+}

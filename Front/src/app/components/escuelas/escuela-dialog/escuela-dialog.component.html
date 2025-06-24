@@ -1,0 +1,18 @@
+<h1 mat-dialog-title>{{ isEditMode ? 'Editar Escuela' : 'Agregar Escuela' }}</h1>
+<div mat-dialog-content [formGroup]="form">
+  <mat-form-field appearance="fill" class="w-full">
+    <mat-label>Nombre</mat-label>
+    <input matInput formControlName="Nombre">
+    <mat-error *ngIf="form.get('Nombre')?.hasError('required')">El nombre es requerido.</mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="w-full">
+    <mat-label>Dirección</mat-label>
+    <textarea matInput formControlName="Direccion"></textarea>
+    <mat-error *ngIf="form.get('Direccion')?.hasError('required')">La dirección es requerida.</mat-error>
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onCancel()">Cancelar</button>
+  <button mat-raised-button color="primary" (click)="onSave()" [disabled]="!form.valid">{{ isEditMode ? 'Guardar Cambios' : 'Crear' }}</button>
+</div> 
